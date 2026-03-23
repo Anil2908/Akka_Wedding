@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pavan Weds Ramya - Wedding Invitation</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
         /* --- BASE STYLES & RESET --- */
@@ -20,67 +18,32 @@
         body {
             font-family: 'Playfair Display', serif;
             background-color: #f9e4df;
-            /* Soft peach/pink base */
             overflow-x: hidden;
             color: #5c2c16;
             scroll-behavior: smooth;
         }
 
-        h1,
-        h2,
-        h3,
-        h4 {
+        h1, h2, h3, h4 {
             font-family: 'Cinzel', serif;
             text-align: center;
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
         /* --- ANIMATION UTILITIES --- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1.2s ease-out;
-        }
+        .fade-in { opacity: 0; transform: translateY(40px); transition: all 1.2s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .slide-up { opacity: 0; transform: translateY(100px); transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide-up.visible { opacity: 1; transform: translateY(0); }
+        .scale-in { opacity: 0; transform: scale(0.8); transition: all 1s ease-out; }
+        .scale-in.visible { opacity: 1; transform: scale(1); }
+        .photo-reveal { opacity: 0.2; transform: scale(0.95); transition: opacity 2s ease-in-out, transform 2s ease-out; }
+        .photo-reveal.visible { opacity: 1; transform: scale(1); }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .slide-up {
-            opacity: 0;
-            transform: translateY(100px);
-            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .slide-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .scale-in {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 1s ease-out;
-        }
-
-        .scale-in.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Photo Reveal Animation */
-        .photo-reveal {
-            opacity: 0.2; /* Starts with less opacity */
-            transform: scale(0.95); /* Slightly scaled down */
-            transition: opacity 2s ease-in-out, transform 2s ease-out;
-        }
-
-        .photo-reveal.visible {
-            opacity: 1; /* Reveals to full opacity */
-            transform: scale(1); /* Returns to normal size */
-        }
-
-        /* --- 1. HERO SECTION (Temple & Pillars) --- */
+        /* --- 1. HERO SECTION --- */
         #hero {
             position: relative;
             height: 100vh;
@@ -99,55 +62,35 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-            padding: 0 10%;
+            padding: 0 5%;
             z-index: 10;
         }
 
         .diya {
-            height: 35vh;
+            height: clamp(15vh, 25vh, 35vh);
             width: auto;
             animation: float 2s ease-in-out infinite alternate;
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            100% {
-                transform: translateY(15px);
-            }
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(15px); }
         }
 
         .hero-title {
             z-index: 15;
-            margin-top: 25vh;
+            margin-top: clamp(15vh, 20vh, 25vh);
             opacity: 0;
             transform: translateY(50px);
             transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
             text-align: center;
+            width: 90%;
         }
 
-        .hero-title.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .hero-title.revealed { opacity: 1; transform: translateY(0); }
+        .hero-title h1 { font-size: clamp(2rem, 6vw, 4rem); color: #2c3e50; letter-spacing: 3px; }
+        .hero-title h3 { font-size: clamp(1.2rem, 3vw, 2rem); color: #2c3e50; margin: 10px 0; letter-spacing: 5px; }
 
-        .hero-title h1 {
-            font-size: 3.5rem;
-            color: #2c3e50;
-            letter-spacing: 3px;
-        }
-
-        .hero-title h3 {
-            font-size: 1.5rem;
-            color: #2c3e50;
-            margin: 10px 0;
-            letter-spacing: 5px;
-        }
-
-
-        /* Temple & Pillars Layout */
         .scenery-container {
             position: absolute;
             bottom: 0;
@@ -159,71 +102,39 @@
         }
 
         .temple-img {
-            width: 50%;
-            max-width: 900px;
+            width: clamp(250px, 60%, 900px);
             z-index: 5;
             opacity: 0;
             transform: translateY(150px);
             transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .temple-img.landed {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .temple-img.landed { opacity: 1; transform: translateY(0); }
 
         .pillar {
             position: absolute;
             bottom: 0;
-            width: 28%;
-            max-width: 350px;
+            width: clamp(80px, 20%, 350px);
             z-index: 10;
         }
 
-        .pillar-left {
-            left: -5%;
-        }
+        .pillar-left { left: -2%; }
+        .pillar-right { right: -2%; }
 
-        .pillar-right {
-            right: -5%;
-        }
-
-        /* --- 2. RED CARPET & INVITING (3D Floor Effect) --- */
-        #inviting-intro,
-        #inviting-details {
+        /* --- 2. INVITING SECTION --- */
+        #inviting-intro, #inviting-details {
             background: #ff4d6d;
             color: #ffeaa7;
             text-align: center;
-            min-height: auto;
             padding: 2rem 1rem;
         }
 
-        #inviting-intro {
-            padding-bottom: 1rem;
-        }
+        #inviting-intro { padding-bottom: 1rem; }
+        #inviting-details { padding-top: 0; }
 
-        #inviting-details {
-            padding-top: 0;
-        }
+        .ganesha-logo { width: clamp(100px, 15vw, 150px); margin-bottom: 2rem; }
+        .inviting-text { font-size: clamp(1.2rem, 3vw, 1.5rem); margin: 1rem 0 0.5rem 0; line-height: 1.6; }
 
-        .ganesha-logo {
-            width: 150px;
-            margin-bottom: 2rem;
-        }
-
-        .inviting-text {
-            font-size: 1.5rem;
-            margin: 1rem 0 0.5rem 0;
-            line-height: 1.6;
-        }
-
-        .parents-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        /* UPDATED GARLAND STYLES */
         .garland-wrapper {
             position: relative;
             width: 100%;
@@ -231,90 +142,60 @@
             margin: 0 auto;
         }
 
-        .garlands-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+        .garlands-img { width: 100%; height: auto; display: block; }
 
         .garland-text-overlay {
             position: absolute;
-            top: 35%;
+            top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            width: 90%;
+            width: 85%;
             z-index: 10;
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
         }
 
-        /* PEACOCKS POSITIONS */
-        .peacock-corner-left,
-        .peacock-corner-right {
+        .garland-text-overlay h2 { font-size: clamp(1.2rem, 4vw, 2.5rem); margin: 5px 0; }
+        .garland-text-overlay p { font-size: clamp(0.7rem, 1.5vw, 1.1rem); margin: 5px 0; }
+
+        .peacock-corner-left, .peacock-corner-right {
             position: absolute;
-            bottom: 8%; /* Adjust height vertically */
-            width: 360px; /* Adjust size of peacocks */
+            bottom: 5%;
+            width: clamp(60px, 20%, 360px);
             z-index: 12;
             filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.3));
         }
 
-        .peacock-corner-left {
-            left: 5%; /* Distance from left edge */
-        }
+        .peacock-corner-left { left: 2%; }
+        .peacock-corner-right { right: 2%; }
 
-        .peacock-corner-right {
-            right: 5%; /* Distance from right edge */
-        }
-
-        /* 3. Introduction & Gallery */
+        /* --- 3. GALLERY SECTION --- */
         #gallery {
             background: #f8be28;
             color: #e05b3e;
             text-align: center;
-            padding: 5rem 2rem;
+            padding: clamp(3rem, 8vw, 5rem) 1rem;
         }
 
-        .gallery-headers {
-            margin-bottom: 4rem;
-        }
-
-        .intro-sub {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-            color: #e05b3e;
-        }
-
+        .gallery-headers { margin-bottom: clamp(2rem, 5vw, 4rem); }
+        .intro-sub { font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 600; letter-spacing: 2px; margin-bottom: 0.5rem; }
+        
         .intro-main {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
             font-weight: 700;
             letter-spacing: 1px;
-            color: #e05b3e;
             margin-bottom: 2.5rem;
-            /* To center the inline heart properly */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .intro-tag {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 6px;
-            color: #e05b3e;
-        }
-
-        /* The Framed Image Effect */
         .gallery-image-wrapper {
-            position: relative; /* Added relative positioning for absolute hearts inside */
+            position: relative;
             width: 100%;
             max-width: 1000px;
             margin: 0 auto;
-            padding: 10px;
+            padding: clamp(5px, 2vw, 10px);
             background-color: #fad36d;
             border-radius: 4px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -329,63 +210,35 @@
             border-radius: 5px;
         }
 
-        /* --- LUB DUB BEATING HEARTS WITH NAMES --- */
-        .heart-svg {
-            display: block;
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0px 4px 5px rgba(0,0,0,0.25));
-        }
+        .heart-svg { display: block; width: 100%; height: auto; filter: drop-shadow(0px 4px 5px rgba(0,0,0,0.25)); }
+        
+        .inline-heart { display: inline-block; margin: 0 clamp(5px, 2vw, 15px); }
+        .inline-heart .heart-svg { width: clamp(25px, 5vw, 45px); animation: lub-dub 1.2s infinite ease-in-out; }
 
-        .inline-heart {
-            display: inline-block;
-            margin: 0 15px;
-        }
-
-        .inline-heart .heart-svg {
-            width: 45px; 
-            animation: lub-dub 1.2s infinite ease-in-out;
-        }
-
-        /* Wrapper for the floating hearts with text */
         .named-heart {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 85px; /* Base size for the heart to fit the name */
+            width: clamp(50px, 10vw, 85px);
             animation: lub-dub 1.2s infinite ease-in-out;
         }
 
         .heart-text {
             position: absolute;
-            color: #ffeaa7; /* Soft gold color to contrast with red */
+            color: #ffeaa7;
             font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
+            font-size: clamp(0.5rem, 1.5vw, 0.85rem);
             font-weight: 700;
             z-index: 2;
-            margin-top: -6px; /* Shift up slightly to center optically on the heart */
+            margin-top: -10%;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
         }
 
-        .heart-wrapper {
-            position: absolute;
-            z-index: 20;
-        }
+        .heart-wrapper { position: absolute; z-index: 20; }
+        .heart-left { top: -5%; left: -5%; transform: rotate(-15deg); }
+        .heart-right { bottom: -5%; right: -5%; transform: rotate(15deg); }
 
-        .heart-left {
-            top: -30px;
-            left: -30px;
-            transform: rotate(-15deg);
-        }
-
-        .heart-right {
-            bottom: -30px;
-            right: -30px;
-            transform: rotate(15deg);
-        }
-
-        /* The "Lub Dub" Animation Keyframes */
         @keyframes lub-dub {
             0% { transform: scale(1); }
             15% { transform: scale(1.25); }
@@ -395,120 +248,62 @@
             100% { transform: scale(1); }
         }
 
-        /* --- 3. SAVE THE DATE (Peach Theme) --- */
+        /* --- 4. SAVE THE DATE --- */
         #save-the-date {
             background: linear-gradient(to bottom, #f9e4df, #f5c6c0);
-            padding: 5rem 2rem;
+            padding: clamp(3rem, 8vw, 5rem) 1rem;
             text-align: center;
             position: relative;
         }
 
-        #save-the-date::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            background-image: url('mandala-bg.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.1;
-            z-index: 0;
-        }
-
-        .std-title {
-            font-size: 4rem;
-            color: #d35400;
-            letter-spacing: 4px;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 2;
-        }
+        .std-title { font-size: clamp(2.5rem, 6vw, 4rem); color: #d35400; letter-spacing: 4px; margin-bottom: 3rem; position: relative; z-index: 2; }
 
         .std-grid {
             display: flex;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
+            gap: 1rem;
         }
 
-        .std-side {
-            flex: 1;
-            padding: 1rem;
-        }
+        .std-side { flex: 1; padding: 1rem; }
+        .std-side h2 { font-size: clamp(1.5rem, 3.5vw, 2.5rem); color: #d35400; margin-bottom: 10px; }
+        .std-side p { font-size: clamp(1rem, 2vw, 1.2rem); color: #7f8c8d; line-height: 1.6; }
+        
+        .std-center { flex: 1.5; display: flex; justify-content: center; }
+        .car-img { width: 100%; max-width: 500px; filter: drop-shadow(0px 20px 15px rgba(0, 0, 0, 0.2)); }
 
-        .std-side h2 {
-            font-size: 2.5rem;
-            color: #d35400;
-            margin-bottom: 10px;
-        }
+        .venue-bottom { margin-top: clamp(2rem, 5vw, 4rem); position: relative; z-index: 2; }
+        .venue-bottom h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); color: #d35400; }
+        .venue-bottom p { font-size: clamp(1rem, 2vw, 1.2rem); color: #7f8c8d; margin-top: 10px; }
 
-        .std-side p {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            line-height: 1.6;
-        }
-
-        .std-center {
-            flex: 1.5;
-            display: flex;
-            justify-content: center;
-        }
-
-        .car-img {
-            width: 100%;
-            max-width: 500px;
-            filter: drop-shadow(0px 20px 15px rgba(0, 0, 0, 0.2));
-        }
-
-        .venue-bottom {
-            margin-top: 4rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .venue-bottom h2 {
-            font-size: 2.5rem;
-            color: #d35400;
-        }
-
-        .venue-bottom p {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            margin-top: 10px;
-        }
-
-        /* --- 4. FINALE (Hanging Garlands & Avatars) --- */
+        /* --- 5. FINALE --- */
         #finale {
             background: linear-gradient(to bottom, #f5c6c0, #fad3d0);
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 4rem 2rem;
+            padding: 4rem 1rem;
             overflow: hidden;
         }
 
         .finale-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: clamp(1.2rem, 3.5vw, 2rem);
             color: #d35400;
             text-align: center;
             max-width: 800px;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             z-index: 5;
         }
 
-        .garlands-back,
-        .garlands-front {
+        .garlands-back, .garlands-front {
             position: absolute;
             top: 0;
             width: 100%;
@@ -517,19 +312,11 @@
             pointer-events: none;
         }
 
-        .garlands-back {
-            z-index: 1;
-            opacity: 0.5;
-            transform: scale(0.8) translateY(-10%);
-            filter: blur(2px);
-        }
-
-        .garlands-front {
-            z-index: 10;
-        }
+        .garlands-back { z-index: 1; opacity: 0.5; transform: scale(0.8) translateY(-10%); filter: blur(2px); }
+        .garlands-front { z-index: 10; }
 
         .flower-string {
-            width: 40px;
+            width: clamp(15px, 3vw, 40px);
             height: 60vh;
             background-image: url('flower-string.png');
             background-repeat: repeat-y;
@@ -545,44 +332,24 @@
             justify-content: center;
         }
 
-        .avatar-img {
-            width: 100%;
-            filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15));
-        }
+        .avatar-img { width: clamp(250px, 80%, 600px); filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15)); }
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        /* --- MOBILE RESPONSIVENESS (Overriding specifically for small layouts) --- */
         @media (max-width: 768px) {
-            .hero-title h1 { font-size: 2.2rem; }
-            .hero-title h3 { font-size: 1rem; }
-            .pillar { width: 40%; }
-            .temple-img { width: 70%; }
-            .floor-perspective { height: 50vh; }
-            .red-carpet { width: 90%; }
-            .ganesha-logo { width: 150px; }
-            .std-grid { flex-direction: column; }
-            .std-side { margin-bottom: 2rem; }
-            .car-img { margin: 2rem 0; width: 90%; }
-            .finale-text { font-size: 1.5rem; }
-            .flower-string { width: 25px; }
-
-            /* Mobile Peacock adjustments */
-            .peacock-corner-left,
-            .peacock-corner-right {
-                width: 80px;
-                bottom: 4%;
+            .std-grid { flex-direction: column; text-align: center; }
+            .std-side { margin-bottom: 1rem; }
+            .car-img { margin: 1rem 0; width: 80%; }
+            .garland-text-overlay { top: 45%; }
+            
+            /* Give more space so texts don't overlap garland borders on small screens */
+            .garland-text-overlay p:first-child, .garland-text-overlay p:last-child {
+                display: none; /* Optionally hide parent names on very small screens for cleaner look, or just shrink font further */
             }
-
-            /* Mobile Heart & Text adjustments */
-            .named-heart {
-                width: 65px;
-            }
-            .heart-text {
-                font-size: 0.65rem;
-                margin-top: -4px;
-            }
-            .inline-heart .heart-svg {
-                width: 30px;
-            }
+        }
+        
+        @media (max-width: 480px) {
+            .garland-text-overlay p { display: block; font-size: 0.6rem; } /* Bring back names but tiny */
+            .garland-text-overlay h2 { font-size: 1rem; margin: 2px 0; }
         }
     </style>
 </head>
@@ -609,40 +376,30 @@
     </section>
 
     <section id="inviting-intro">
-
         <img src="ganesha-gold.png" alt="Lord Ganesha" class="ganesha-logo scale-in">
-
         <h3 class="fade-in" style="color: #ffd32a;">With the divine blessings</h3>
-
-        <h1 class="fade-in" style="font-size: 4rem; margin: 2rem 0;">Inviting</h1>
-
+        <h1 class="fade-in" style="font-size: clamp(2.5rem, 6vw, 4rem); margin: 1.5rem 0;">Inviting</h1>
         <p class="inviting-text fade-in">We warmly invite you to join us in our wedding celebration</p>
-
     </section>
 
     <section id="inviting-details">
-
         <div class="garland-wrapper fade-in">
-
             <img src="garlands.png" alt="Mango leaves and marigolds" class="garlands-img">
 
             <div class="garland-text-overlay">
                 <p>Daughter of smt. Venkatalakshmamma & shri. Bala Venkata Reddy</p>
-                <h2 style="font-size: 2.5rem; margin: 10px 0;">Ramya Reddy</h2>
-                <p style="margin: 15px 0;">WEDS</p>
-                <h2 style="font-size: 2.5rem; margin: 10px 0;">Pavan kumar Reddy</h2>
-                <p>Son of smt. Saraswathi & shri, Venkata Subba Reddy</p>
+                <h2>Ramya Reddy</h2>
+                <p style="margin: 5px 0;">WEDS</p>
+                <h2>Pavan kumar Reddy</h2>
+                <p>Son of smt. Saraswathi & shri. Venkata Subba Reddy</p>
             </div>
 
             <img src="peacock-left.png" alt="Left Peacock" class="peacock-corner-left">
             <img src="peacock-right.png" alt="Right Peacock" class="peacock-corner-right">
-
         </div>
-
     </section>
 
     <section id="gallery">
-
         <div class="gallery-headers fade-in">
             <h4 class="intro-sub">INTRODUCING THE</h4>
 
@@ -658,7 +415,6 @@
         </div>
 
         <div class="gallery-image-wrapper photo-reveal">
-
             <div class="heart-wrapper heart-left">
                 <div class="named-heart">
                     <svg class="heart-svg" viewBox="0 0 32 29.6">
@@ -678,11 +434,8 @@
             </div>
 
             <img src="Photo1.png" alt="Pavan and Ramya" class="wide-couple-img">
-
         </div>
-
     </section>
-
 
     <section id="save-the-date">
         <h1 class="std-title fade-in">SAVE THE DATE</h1>
@@ -804,3 +557,4 @@
 </body>
 
 </html>
+
