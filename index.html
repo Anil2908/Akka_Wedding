@@ -102,7 +102,7 @@
         }
 
         .temple-img {
-            width: clamp(250px, 60%, 900px);
+            width: clamp(250px, 50%, 900px);
             z-index: 5;
             opacity: 0;
             transform: translateY(150px);
@@ -146,7 +146,7 @@
 
         .garland-text-overlay {
             position: absolute;
-            top: 40%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
@@ -161,7 +161,7 @@
         .peacock-corner-left, .peacock-corner-right {
             position: absolute;
             bottom: 5%;
-            width: clamp(60px, 20%, 360px);
+            width: clamp(60px, 40%, 360px);
             z-index: 12;
             filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.3));
         }
@@ -272,19 +272,24 @@
 
         .std-side { flex: 1; padding: 1rem; }
         .std-side h2 { font-size: clamp(1.5rem, 3.5vw, 2.5rem); color: #d35400; margin-bottom: 10px; }
-        .std-side p { font-size: clamp(1rem, 2vw, 1.2rem); color: #7f8c8d; line-height: 1.6; }
+        
+        .std-side p { font-size: clamp(1.4rem, 2.5vw, 1.8rem); color: #000000; font-weight: 600; line-height: 1.6; }
         
         .std-center { flex: 1.5; display: flex; justify-content: center; }
         .car-img { width: 100%; max-width: 500px; filter: drop-shadow(0px 20px 15px rgba(0, 0, 0, 0.2)); }
 
         .venue-bottom { margin-top: clamp(2rem, 5vw, 4rem); position: relative; z-index: 2; }
         .venue-bottom h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); color: #d35400; }
-        .venue-bottom p { font-size: clamp(1rem, 2vw, 1.2rem); color: #7f8c8d; margin-top: 10px; }
+        
+        .venue-bottom p { font-size: clamp(1.4rem, 2.5vw, 1.8rem); color: #000000; font-weight: 600; margin-top: 10px; }
+
+        /* Added nowrap utility class */
+        .nowrap-text { white-space: nowrap; }
 
         /* --- 5. FINALE --- */
         #finale {
             background: linear-gradient(to bottom, #f5c6c0, #fad3d0);
-            min-height: 80vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -334,21 +339,23 @@
 
         .avatar-img { width: clamp(250px, 80%, 600px); filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15)); }
 
-        /* --- MOBILE RESPONSIVENESS (Overriding specifically for small layouts) --- */
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
             .std-grid { flex-direction: column; text-align: center; }
             .std-side { margin-bottom: 1rem; }
             .car-img { margin: 1rem 0; width: 80%; }
             .garland-text-overlay { top: 45%; }
             
-            /* Give more space so texts don't overlap garland borders on small screens */
             .garland-text-overlay p:first-child, .garland-text-overlay p:last-child {
-                display: none; /* Optionally hide parent names on very small screens for cleaner look, or just shrink font further */
+                display: none; 
             }
+            
+            /* Allow wrapping on mobile if needed so it doesn't break off the screen */
+            .nowrap-text { white-space: normal; } 
         }
         
         @media (max-width: 480px) {
-            .garland-text-overlay p { display: block; font-size: 0.6rem; } /* Bring back names but tiny */
+            .garland-text-overlay p { display: block; font-size: 0.6rem; } 
             .garland-text-overlay h2 { font-size: 1rem; margin: 2px 0; }
         }
     </style>
@@ -361,13 +368,11 @@
             <img src="diya-left.png" alt="Diya" class="diya" style="animation-delay: 0s;">
             <img src="diya-right.png" alt="Diya" class="diya" style="animation-delay: 1.5s;">
         </div>
-
         <div class="hero-title">
             <h1>PAVAN KUMAR REDDY</h1>
             <h3>WEDS</h3>
             <h1>RAMYA REDDY</h1>
         </div>
-
         <div class="scenery-container">
             <img src="pillar-left.png" alt="Pillar" class="pillar pillar-left slide-up">
             <img src="temple-illustration.png" alt="Temple" class="temple-img">
@@ -385,7 +390,6 @@
     <section id="inviting-details">
         <div class="garland-wrapper fade-in">
             <img src="garlands.png" alt="Mango leaves and marigolds" class="garlands-img">
-
             <div class="garland-text-overlay">
                 <p>Daughter of smt. Venkatalakshmamma & shri. Bala Venkata Reddy</p>
                 <h2>Ramya Reddy</h2>
@@ -393,7 +397,6 @@
                 <h2>Pavan kumar Reddy</h2>
                 <p>Son of smt. Saraswathi & shri. Venkata Subba Reddy</p>
             </div>
-
             <img src="peacock-left.png" alt="Left Peacock" class="peacock-corner-left">
             <img src="peacock-right.png" alt="Right Peacock" class="peacock-corner-right">
         </div>
@@ -402,7 +405,6 @@
     <section id="gallery">
         <div class="gallery-headers fade-in">
             <h4 class="intro-sub">INTRODUCING THE</h4>
-
             <h2 class="intro-main">
                 GROOM 
                 <div class="inline-heart">
@@ -413,7 +415,6 @@
                 BRIDE
             </h2>
         </div>
-
         <div class="gallery-image-wrapper photo-reveal">
             <div class="heart-wrapper heart-left">
                 <div class="named-heart">
@@ -423,7 +424,6 @@
                     <span class="heart-text">PAVAN</span>
                 </div>
             </div>
-            
             <div class="heart-wrapper heart-right">
                 <div class="named-heart">
                     <svg class="heart-svg" viewBox="0 0 32 29.6">
@@ -432,7 +432,6 @@
                     <span class="heart-text">RAMYA</span>
                 </div>
             </div>
-
             <img src="Photo1.png" alt="Pavan and Ramya" class="wide-couple-img">
         </div>
     </section>
@@ -443,17 +442,17 @@
         <div class="std-grid">
             <div class="std-side fade-in">
                 <h2>Subamuhurtham</h2>
-                <p>On Wednesday, 01st April 2026</p>
+                <p class="nowrap-text">On Wednesday, 01 April 2026</p>
                 <p>At 08:02am</p>
             </div>
 
             <div class="std-center scale-in">
-                <img src="vintage-car.png" alt="Vintage Car" class="car-img">
+                <img src="dosa.png" alt="Vintage Car" class="car-img">
             </div>
 
             <div class="std-side fade-in">
                 <h2>Reception</h2>
-                <p>On Tuesday, 31st March 2026</p>
+                <p class="nowrap-text">On Tuesday, 31 March 2026</p>
                 <p>At 08:00pm</p>
             </div>
         </div>
@@ -473,15 +472,12 @@
             <div class="flower-string" style="height: 50vh;"></div>
             <div class="flower-string"></div>
         </div>
-
         <h2 class="finale-text fade-in">
             We Request your gracious presence on the Auspicious occasion of our marriage
         </h2>
-
         <div class="avatars-container slide-up">
             <img src="3d-avatars.png" alt="Bride and Groom Avatars" class="avatar-img">
         </div>
-
         <div class="garlands-front">
             <div class="flower-string" style="height: 30vh;"></div>
             <div class="flower-string" style="height: 70vh;"></div>
@@ -518,7 +514,7 @@
             const title = document.querySelector('.hero-title');
 
             let isAutoScrolling = false;
-            let scrollSpeed = 2; // Adjusted for a smoother "rolling" pace
+            let scrollSpeed = 2;
 
             // Trigger initial hero animations
             setTimeout(() => { temple.classList.add('landed'); }, 300);
@@ -557,4 +553,3 @@
 </body>
 
 </html>
-
