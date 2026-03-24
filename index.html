@@ -355,15 +355,18 @@
 
         /* --- MOBILE RESPONSIVENESS UPDATES --- */
         @media (max-width: 768px) {
-            /* 1. Hero Section Adjustments */
-            .hero-title { margin-top: 20vh; } /* Push text up slightly so pillars have room */
-            .diya { height: 15vh; }
+            /* 1. FORCE Hero Section Adjustments */
+            .hero-title { margin-top: 15vh !important; } 
+            .diya { height: 12vh !important; }
             
             .temple-img { 
-                width: clamp(280px, 85vw, 600px); /* Makes temple fill out into a full circle footprint */
+                width: 90vw !important; /* Force to fill width to look like full circle */
+                max-width: none !important;
             }
             .pillar { 
-                width: clamp(120px, 30vw, 250px); /* Makes pillars much taller to reach the text line */
+                height: 45vh !important; /* Force pillars to stretch upwards */
+                width: auto !important; 
+                max-width: none !important;
             }
 
             .std-grid { flex-direction: column; text-align: center; }
@@ -372,12 +375,11 @@
             
             /* 2. Garland Name Box Adjustments */
             .garland-text-overlay { 
-                top: 48%; /* Centers perfectly inside the rectangle gap */
-                width: 70%; /* Keeps the text contained inside the visual box */
+                top: 48%; 
+                width: 70%; 
             }
-            /* Hide the extra long parent info on mobile to make room for names */
             .garland-text-overlay p:first-child, .garland-text-overlay p:last-child { 
-                display: none; 
+                display: none !important; /* Force parent names to stay hidden */
             }
             .garland-text-overlay h2 { font-size: 1.3rem; margin: 4px 0; }
             .nowrap-text { white-space: normal; } 
@@ -388,12 +390,11 @@
         }
         
         @media (max-width: 480px) {
-            /* Fix for the overlapping text bug on very small screens */
             .garland-text-overlay p:first-child, .garland-text-overlay p:last-child { 
-                display: none; /* Keep parent info hidden to maintain the rectangle */
+                display: none !important; 
             } 
             .garland-text-overlay h2 { font-size: 1.1rem; margin: 2px 0; }
-            .garland-text-overlay p { font-size: 0.8rem; } /* Size for the word "WEDS" */
+            .garland-text-overlay p { font-size: 0.8rem; } 
         }
     </style>
 </head>
