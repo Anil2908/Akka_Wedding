@@ -327,7 +327,6 @@
             filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15)); 
         }
 
-        /* INCREASED GAP so the wider flowers don't bunch up */
         .flower-group {
             position: absolute;
             top: 0;
@@ -337,7 +336,6 @@
             pointer-events: none;
         }
         
-        /* Adjusted positioning to make room for wider flowers */
         .left-flowers {
             left: clamp(-40px, -2vw, 10px);
         }
@@ -346,27 +344,42 @@
             right: clamp(-40px, -2vw, 10px);
         }
 
-        /* --- INCREASED SIZE HERE --- */
         .flower-string {
-            width: clamp(60px, 10vw, 140px); /* Significantly thicker */
-            background-image: url('image_8.png'); /* Using your new generated image name */
+            width: clamp(60px, 10vw, 140px); 
+            background-image: url('image_8.png'); 
             background-repeat: repeat-y;
             background-size: contain;
             background-position: top center;
             filter: drop-shadow(0px 5px 8px rgba(0,0,0,0.3));
         }
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        /* --- MOBILE RESPONSIVENESS UPDATES --- */
         @media (max-width: 768px) {
-            .hero-title { margin-top: 35vh; }
+            /* 1. Hero Section Adjustments */
+            .hero-title { margin-top: 20vh; } /* Push text up slightly so pillars have room */
             .diya { height: 15vh; }
+            
+            .temple-img { 
+                width: clamp(280px, 85vw, 600px); /* Makes temple fill out into a full circle footprint */
+            }
+            .pillar { 
+                width: clamp(120px, 30vw, 250px); /* Makes pillars much taller to reach the text line */
+            }
 
             .std-grid { flex-direction: column; text-align: center; }
             .std-side { margin-bottom: 1rem; }
             .car-img { margin: 1rem 0; width: 80%; }
             
-            .garland-text-overlay { top: 25%; }
-            .garland-text-overlay p:first-child, .garland-text-overlay p:last-child { display: none; }
+            /* 2. Garland Name Box Adjustments */
+            .garland-text-overlay { 
+                top: 48%; /* Centers perfectly inside the rectangle gap */
+                width: 70%; /* Keeps the text contained inside the visual box */
+            }
+            /* Hide the extra long parent info on mobile to make room for names */
+            .garland-text-overlay p:first-child, .garland-text-overlay p:last-child { 
+                display: none; 
+            }
+            .garland-text-overlay h2 { font-size: 1.3rem; margin: 4px 0; }
             .nowrap-text { white-space: normal; } 
             
             .left-flowers { left: -10px; gap: 15px; }
@@ -375,8 +388,12 @@
         }
         
         @media (max-width: 480px) {
-            .garland-text-overlay p { display: block; font-size: 0.6rem; } 
-            .garland-text-overlay h2 { font-size: 1rem; margin: 2px 0; }
+            /* Fix for the overlapping text bug on very small screens */
+            .garland-text-overlay p:first-child, .garland-text-overlay p:last-child { 
+                display: none; /* Keep parent info hidden to maintain the rectangle */
+            } 
+            .garland-text-overlay h2 { font-size: 1.1rem; margin: 2px 0; }
+            .garland-text-overlay p { font-size: 0.8rem; } /* Size for the word "WEDS" */
         }
     </style>
 </head>
@@ -574,8 +591,4 @@
         });
     </script>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> c111e1ecca92a6da45acb248e37f813a2c16e554
