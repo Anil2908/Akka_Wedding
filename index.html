@@ -355,16 +355,15 @@
 
         /* --- MOBILE RESPONSIVENESS UPDATES --- */
         @media (max-width: 768px) {
-            /* 1. FORCE Hero Section Adjustments */
             .hero-title { margin-top: 15vh !important; } 
             .diya { height: 12vh !important; }
             
             .temple-img { 
-                width: 90vw !important; /* Force to fill width to look like full circle */
+                width: 90vw !important; 
                 max-width: none !important;
             }
             .pillar { 
-                height: 45vh !important; /* Force pillars to stretch upwards */
+                height: 45vh !important; 
                 width: auto !important; 
                 max-width: none !important;
             }
@@ -375,11 +374,11 @@
             
             /* 2. Garland Name Box Adjustments */
             .garland-text-overlay { 
-                top: 48%; 
+                top: 38%; /* Adjusted from 48% to move the text UP */
                 width: 70%; 
             }
             .garland-text-overlay p:first-child, .garland-text-overlay p:last-child { 
-                display: none !important; /* Force parent names to stay hidden */
+                display: none !important; 
             }
             .garland-text-overlay h2 { font-size: 1.3rem; margin: 4px 0; }
             .nowrap-text { white-space: normal; } 
