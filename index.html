@@ -79,7 +79,7 @@
 
         .hero-title {
             z-index: 15;
-            margin-top: clamp(15vh, 20vh, 25vh);
+            margin-top: clamp(20vh, 25vh, 30vh);
             opacity: 0;
             transform: translateY(50px);
             transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
@@ -272,8 +272,6 @@
 
         .std-side { flex: 1; padding: 1rem; }
         .std-side h2 { font-size: clamp(1.5rem, 3.5vw, 2.5rem); color: #d35400; margin-bottom: 10px; }
-        
-        /* Updated Font Size Here */
         .std-side p { font-size: clamp(1.7rem, 3.5vw, 2.4rem); color: #000000; font-weight: 600; line-height: 1.6; }
         
         .std-center { flex: 1.5; display: flex; justify-content: center; }
@@ -281,11 +279,8 @@
 
         .venue-bottom { margin-top: clamp(2rem, 5vw, 4rem); position: relative; z-index: 2; }
         .venue-bottom h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); color: #d35400; }
-        
-        /* Updated Font Size Here */
         .venue-bottom p { font-size: clamp(1.7rem, 3.5vw, 2.4rem); color: #000000; font-weight: 600; margin-top: 10px; }
 
-        /* Added nowrap utility class */
         .nowrap-text { white-space: nowrap; }
 
         /* --- 5. FINALE --- */
@@ -296,7 +291,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
             padding: 4rem 1rem;
             overflow: hidden;
         }
@@ -306,28 +300,17 @@
             color: #d35400;
             text-align: center;
             max-width: 800px;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             z-index: 5;
         }
 
-        .garlands-back, .garlands-front {
-            position: absolute;
-            top: 0;
+        .finale-content-wrapper {
+            position: relative;
             width: 100%;
+            max-width: 1000px;
             display: flex;
-            justify-content: space-around;
-            pointer-events: none;
-        }
-
-        .garlands-back { z-index: 1; opacity: 0.5; transform: scale(0.8) translateY(-10%); filter: blur(2px); }
-        .garlands-front { z-index: 10; }
-
-        .flower-string {
-            width: clamp(15px, 3vw, 40px);
-            height: 60vh;
-            background-image: url('flower-string.png');
-            background-repeat: repeat-y;
-            background-size: contain;
+            justify-content: center;
+            align-items: flex-start;
         }
 
         .avatars-container {
@@ -339,21 +322,56 @@
             justify-content: center;
         }
 
-        .avatar-img { width: clamp(250px, 80%, 600px); filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15)); }
+        .avatar-img { 
+            width: clamp(250px, 80%, 600px); 
+            filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15)); 
+        }
+
+        /* INCREASED GAP so the wider flowers don't bunch up */
+        .flower-group {
+            position: absolute;
+            top: 0;
+            display: flex;
+            gap: clamp(15px, 3vw, 40px); 
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        /* Adjusted positioning to make room for wider flowers */
+        .left-flowers {
+            left: clamp(-40px, -2vw, 10px);
+        }
+
+        .right-flowers {
+            right: clamp(-40px, -2vw, 10px);
+        }
+
+        /* --- INCREASED SIZE HERE --- */
+        .flower-string {
+            width: clamp(60px, 10vw, 140px); /* Significantly thicker */
+            background-image: url('image_8.png'); /* Using your new generated image name */
+            background-repeat: repeat-y;
+            background-size: contain;
+            background-position: top center;
+            filter: drop-shadow(0px 5px 8px rgba(0,0,0,0.3));
+        }
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
+            .hero-title { margin-top: 35vh; }
+            .diya { height: 15vh; }
+
             .std-grid { flex-direction: column; text-align: center; }
             .std-side { margin-bottom: 1rem; }
             .car-img { margin: 1rem 0; width: 80%; }
-            .garland-text-overlay { top: 45%; }
             
-            .garland-text-overlay p:first-child, .garland-text-overlay p:last-child {
-                display: none; 
-            }
-            
-            /* Allow wrapping on mobile if needed so it doesn't break off the screen */
+            .garland-text-overlay { top: 25%; }
+            .garland-text-overlay p:first-child, .garland-text-overlay p:last-child { display: none; }
             .nowrap-text { white-space: normal; } 
+            
+            .left-flowers { left: -10px; gap: 15px; }
+            .right-flowers { right: -10px; gap: 15px; }
+            .flower-string:nth-child(4), .flower-string:nth-child(5) { display: none; }
         }
         
         @media (max-width: 480px) {
@@ -467,27 +485,30 @@
     </section>
 
     <section id="finale">
-        <div class="garlands-back">
-            <div class="flower-string"></div>
-            <div class="flower-string" style="height: 40vh;"></div>
-            <div class="flower-string"></div>
-            <div class="flower-string" style="height: 50vh;"></div>
-            <div class="flower-string"></div>
-        </div>
         <h2 class="finale-text fade-in">
             We Request your gracious presence on the Auspicious occasion of our marriage
         </h2>
-        <div class="avatars-container slide-up">
-            <img src="3d-avatars.png" alt="Bride and Groom Avatars" class="avatar-img">
-        </div>
-        <div class="garlands-front">
-            <div class="flower-string" style="height: 30vh;"></div>
-            <div class="flower-string" style="height: 70vh;"></div>
-            <div class="flower-string" style="height: 40vh;"></div>
-            <div class="flower-string" style="height: 60vh;"></div>
-            <div class="flower-string" style="height: 35vh;"></div>
-            <div class="flower-string" style="height: 80vh;"></div>
-            <div class="flower-string" style="height: 20vh;"></div>
+        
+        <div class="finale-content-wrapper">
+            
+            <div class="flower-group left-flowers">
+                <div class="flower-string" style="height: 60vh;"></div>
+                <div class="flower-string" style="height: 45vh;"></div>
+                <div class="flower-string" style="height: 70vh;"></div>
+                <div class="flower-string" style="height: 35vh;"></div>
+            </div>
+            
+            <div class="avatars-container slide-up">
+                <img src="3d-avatars.png" alt="Bride and Groom Avatars" class="avatar-img">
+            </div>
+            
+            <div class="flower-group right-flowers">
+                <div class="flower-string" style="height: 35vh;"></div>
+                <div class="flower-string" style="height: 70vh;"></div>
+                <div class="flower-string" style="height: 45vh;"></div>
+                <div class="flower-string" style="height: 60vh;"></div>
+            </div>
+
         </div>
     </section>
 
@@ -553,8 +574,4 @@
         });
     </script>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> e4bd9701390c08193025a2c421626a9c2190db4c
